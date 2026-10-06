@@ -1,0 +1,109 @@
+@{ var current = Services.Current; var isPublic = current == null; }
+<!DOCTYPE html>
+<html lang="es-MX">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>@ViewBag.Title · Admit One</title>
+        <meta name="description" content="Admit One: soluciones para cines y acceso a la administración de integraciones."/>
+        <link rel="icon" href="@Url.Content("~/Content/images/admit-one-logo.webp")" type="image/webp"/>
+        <link rel="stylesheet" href="@Url.Content("~/Content/site.css")"/>
+        <script src="@Url.Content("~/Scripts/site.js")" defer>
+        </script>
+    </head>
+    <body class="@(isPublic ? "public-page" : "admin-page")">
+        <a class="skip-link" href="#main">Ir al contenido
+        </a>
+        <header class="site-header">
+            <a class="brand" href="@(isPublic ? Url.Action("Index","Public") : Url.Action("Index","Home"))" aria-label="Admit One, inicio">
+                <img src="@Url.Content("~/Content/images/admit-one-logo.webp")" alt="Admit One" width="160" height="42"/>
+            </a>
+            <span class="brand-divider">
+            </span>
+            <span class="product-label">INTEGRATIONS <b>ADMIN</b>
+            </span>
+            <nav class="desktop-nav" aria-label="Navegación principal">
+                @if (isPublic) {
+                <a href="/#acceso">Acceso
+                </a>
+                <a href="/#soluciones">Soluciones
+                </a>
+                <a href="https://admit-one.eu/get-in-touch/" target="_blank" rel="noopener noreferrer">Hablemos
+                    <span aria-hidden="true">↗
+                    </span>
+                </a> }
+                else
+                {
+                <a href="@Url.Action("Index","Home")">Inicio
+                </a>
+                if (current.Can("users.read")) {
+                <a href="@Url.Action("Index","Users")">Usuarios
+                </a> }
+                if (current.Can("profiles.read")) {
+                <a href="@Url.Action("Index","Profiles")">Perfiles
+                </a> }
+                <a href="@Url.Action("Index","Account")">Mi cuenta
+                </a>
+                <form action="@Url.Action("Logout","Account")" method="post">
+                    @Html.AntiForgeryToken()
+                    <button class="text-button" type="submit">Cerrar sesión
+                    </button>
+                </form>
+                }
+            </nav>
+            <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-overlay">
+                <span>
+                </span>
+                <span>
+                </span>
+            </button>
+        </header>
+        <div id="menu-overlay" class="menu-overlay" hidden>
+            <nav aria-label="Menú desplegado">
+                @if (isPublic) {
+                <a href="/#acceso">Acceso
+                    <span>01
+                    </span>
+                </a>
+                <a href="/#soluciones">Soluciones
+                    <span>02
+                    </span>
+                </a>
+                <a href="https://admit-one.eu/get-in-touch/" target="_blank" rel="noopener noreferrer">Hablemos
+                    <span>↗
+                    </span>
+                </a> }
+                else
+                {
+                <a href="@Url.Action("Index","Home")">Inicio
+                </a>
+                if (current.Can("users.read")) {
+                <a href="@Url.Action("Index","Users")">Usuarios
+                </a> }
+                if (current.Can("profiles.read")) {
+                <a href="@Url.Action("Index","Profiles")">Perfiles
+                </a> }
+                <a href="@Url.Action("Index","Account")">Mi cuenta
+                </a>
+                <form action="@Url.Action("Logout","Account")" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit">Cerrar sesión
+                    </button>
+                </form>
+                }
+            </nav>
+            <p>Todo tu cine. Conectado.
+            </p>
+        </div>
+        <main id="main">@RenderBody()</main>
+        <footer class="site-footer">
+            <img src="@Url.Content("~/Content/images/admit-one-logo.webp")" alt="Admit One" width="132" height="35"/>
+            <p>Más que un punto de venta.
+            </p>
+            <span>© @DateTime.Now.Year Admit One
+            </span>
+            <a href="https://admit-one.eu/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacidad ↗
+            </a>
+        </footer>
+    </body>
+</html>

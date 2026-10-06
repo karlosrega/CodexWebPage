@@ -1,0 +1,57 @@
+@model List<ProfileRecord>
+@{ ViewBag.Title = "Perfiles"; }
+<section class="admin-content">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">/ ADMINISTRACIÓN
+            </p>
+            <h1>Perfiles
+            </h1>
+            <p>El acceso adecuado para cada responsabilidad.
+            </p>
+        </div>@if (Services.Current.Can("profiles.write")) {
+        <a class="button" href="@Url.Action("Edit")">Nuevo perfil +
+        </a> }
+    </div>
+    @if (TempData["Notice"] != null) {
+    <div class="notice" role="status">@TempData["Notice"]
+    </div> }
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Perfil
+                    </th>
+                    <th>Descripción
+                    </th>
+                    <th>Permisos
+                    </th>
+                    <th>Estado
+                    </th>
+                    <th>Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>@foreach (var profile in Model) {
+                <tr>
+                    <td><strong>@profile.Name</strong>@if (profile.System) {
+                        <small class="protected-label">Protegido
+                        </small> }
+                    </td>
+                    <td>@profile.Description
+                    </td>
+                    <td>@profile.Permissions.Length
+                    </td>
+                    <td>
+                        <span class="badge @(profile.Active ? "active" : "")">@(profile.Active ? "Activo" : "Inactivo")
+                        </span>
+                    </td>
+                    <td>@if (!profile.System && Services.Current.Can("profiles.write")) {
+                        <a class="row-link" href="@Url.Action("Edit",new { id = profile.Id })">Editar →
+                        </a> }
+                    </td>
+                </tr> }
+            </tbody>
+        </table>
+    </div>
+</section>

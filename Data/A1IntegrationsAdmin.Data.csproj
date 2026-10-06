@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net48</TargetFramework></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../Core/A1IntegrationsAdmin.Core.csproj"/><Reference Include="System.Configuration"/><Reference Include="System.Data"/><PackageReference Include="Npgsql" Version="8.0.8"/><PackageReference Include="System.Text.Json" Version="8.0.6"/></ItemGroup>
+</Project>

@@ -1,0 +1,31 @@
+@model A1IntegrationsAdmin.Web.Models.PasswordForm
+@{ ViewBag.Title = "Mi cuenta"; }
+<section class="admin-content narrow">
+    <p class="eyebrow">/ TU ESPACIO
+    </p>
+    <h1>Mi cuenta
+    </h1>
+    <p>@Services.Current.DisplayName · @Services.Current.UserName
+    </p>
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false,"",new { @class = "validation", role = "alert" })
+    <div class="form-panel">
+        <h2>Cambiar contraseña
+        </h2>
+        <label for="CurrentPassword">Contraseña actual
+        </label>
+        @Html.PasswordFor(m => m.CurrentPassword,new { autocomplete = "current-password", required = "required", maxlength = 128 })
+        <label for="NewPassword">Nueva contraseña
+        </label>
+        @Html.PasswordFor(m => m.NewPassword,new { autocomplete = "new-password", required = "required", minlength = 12, maxlength = 128 })
+        <label for="ConfirmPassword">Confirmar nueva contraseña
+        </label>
+        @Html.PasswordFor(m => m.ConfirmPassword,new { autocomplete = "new-password", required = "required", minlength = 12, maxlength = 128 })
+        <p class="muted">Usa entre 12 y 128 caracteres. Al actualizarla, se cerrarán todas tus sesiones.
+        </p>
+        <button class="button" type="submit">Actualizar contraseña →
+        </button>
+    </div>
+    }
+</section>

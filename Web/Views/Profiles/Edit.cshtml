@@ -1,0 +1,41 @@
+@model A1IntegrationsAdmin.Web.Models.ProfileForm
+@{ ViewBag.Title = Model.Id == 0 ? "Nuevo perfil" : "Editar perfil"; }
+<section class="admin-content narrow">
+    <a class="back-link" href="@Url.Action("Index")">← Perfiles
+    </a>
+    <p class="eyebrow">/ ADMINISTRACIÓN
+    </p>
+    <h1>@ViewBag.Title
+    </h1>
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.ValidationSummary(false,"",new { @class = "validation", role = "alert" })
+    <div class="form-panel">
+        <label for="Name">Nombre del perfil
+        </label>
+        @Html.TextBoxFor(m => m.Name,new { maxlength = 80, required = "required" })
+        <label for="Description">Descripción
+        </label>
+        @Html.TextAreaFor(m => m.Description,new { maxlength = 300, rows = 3 })
+        <label class="check-row">
+            @Html.CheckBoxFor(m => m.Active) Perfil activo
+        </label>
+        <fieldset>
+            <legend>Permisos
+            </legend>@foreach (var permission in Model.Catalogue) {
+            <label class="check-row">
+                <input type="checkbox" name="Permissions" value="@permission.Key" checked="@((Model.Permissions ?? new string[0]).Contains(permission.Key))"/> @permission.Value
+            </label> }
+        </fieldset>
+        <p class="muted">Los cambios cerrarán las sesiones de las cuentas que usan este perfil.
+        </p>
+        <div class="form-actions">
+            <button class="button" type="submit">Guardar perfil →
+            </button>
+            <a class="outline-button" href="@Url.Action("Index")">Cancelar
+            </a>
+        </div>
+    </div>
+    }
+</section>

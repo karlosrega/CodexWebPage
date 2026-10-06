@@ -1,0 +1,63 @@
+@model A1IntegrationsAdmin.Web.Models.UserForm
+@{ ViewBag.Title = Model.Id == 0 ? "Nuevo usuario" : "Editar usuario"; }
+<section class="admin-content narrow">
+    <a class="back-link" href="@Url.Action("Index")">← Usuarios
+    </a>
+    <p class="eyebrow">/ ADMINISTRACIÓN
+    </p>
+    <h1>@ViewBag.Title
+    </h1>
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.ValidationSummary(false,"",new { @class = "validation", role = "alert" })
+    <div class="form-panel">
+        <div class="form-grid">
+            <div>
+                <label for="UserName">Usuario
+                </label>
+                @Html.TextBoxFor(m => m.UserName,new { maxlength = 80, required = "required", autocomplete = "off" })
+            </div>
+            <div>
+                <label for="DisplayName">Nombre completo
+                </label>
+                @Html.TextBoxFor(m => m.DisplayName,new { maxlength = 120, required = "required" })
+            </div>
+            <div>
+                <label for="Email">Correo electrónico
+                </label>
+                @Html.TextBoxFor(m => m.Email,new { type = "email", maxlength = 254, required = "required" })
+            </div>
+            <div>
+                <label for="Password">@(Model.Id == 0 ? "Contraseña inicial" : "Nueva contraseña (opcional)")
+                </label>
+                @Html.PasswordFor(m => m.Password,new { minlength = 12, maxlength = 128, autocomplete = "new-password" })
+                <small>12 a 128 caracteres. @(Model.Id != 0 ? "Déjala vacía para conservar la actual." : "")
+                </small>
+            </div>
+        </div>
+        <label class="check-row">
+            @Html.CheckBoxFor(m => m.Active) Usuario activo
+        </label>
+        <fieldset>
+            <legend>Perfiles asignados
+            </legend>
+            <p class="muted">Selecciona los perfiles que necesita esta cuenta.
+            </p>@foreach (var profile in Model.Profiles) {
+            <label class="check-row">
+                <input type="checkbox" name="ProfileIds" value="@profile.Id" checked="@((Model.ProfileIds ?? new int[0]).Contains(profile.Id))"/> @profile.Name
+                <small>@profile.Description
+                </small>
+            </label> }
+        </fieldset>
+        <p class="muted">Al guardar, se cerrarán las sesiones anteriores del usuario.
+        </p>
+        <div class="form-actions">
+            <button class="button" type="submit">Guardar usuario →
+            </button>
+            <a class="outline-button" href="@Url.Action("Index")">Cancelar
+            </a>
+        </div>
+    </div>
+    }
+</section>

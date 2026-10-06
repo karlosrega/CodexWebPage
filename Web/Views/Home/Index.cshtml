@@ -1,0 +1,49 @@
+@{ ViewBag.Title = "Inicio"; var current = Services.Current; }
+<section class="admin-welcome">
+    <p class="eyebrow">/ TU CENTRO DE ADMINISTRACIÓN
+    </p>
+    <h1>Hola, @current.DisplayName.
+    </h1>
+    <p>Gestiona los accesos que conectan a tu equipo.
+    </p>
+    <span>A1 INTEGRATIONS ADMIN
+    </span>
+</section>
+<section class="admin-content">
+    <p class="eyebrow">/ ACCESOS RÁPIDOS
+    </p>
+    <div class="dashboard-grid">
+        @if (current.Can("users.read")) {
+        <a class="dashboard-card" href="@Url.Action("Index","Users")">
+            <span class="card-number">01
+            </span>
+            <h2>Usuarios
+            </h2>
+            <p>Consulta y administra las cuentas de tu equipo.
+            </p>
+            <span class="card-arrow">→
+            </span>
+        </a> }
+        @if (current.Can("profiles.read")) {
+        <a class="dashboard-card" href="@Url.Action("Index","Profiles")">
+            <span class="card-number">02
+            </span>
+            <h2>Perfiles
+            </h2>
+            <p>Organiza permisos y responsabilidades.
+            </p>
+            <span class="card-arrow">→
+            </span>
+        </a> }
+        <a class="dashboard-card" href="@Url.Action("Index","Account")">
+            <span class="card-number">03
+            </span>
+            <h2>Mi cuenta
+            </h2>
+            <p>Consulta tu acceso y actualiza tu contraseña.
+            </p>
+            <span class="card-arrow">→
+            </span>
+        </a>
+    </div>
+</section>

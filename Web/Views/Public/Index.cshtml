@@ -1,0 +1,130 @@
+@model A1IntegrationsAdmin.Web.Models.LoginForm
+@{ ViewBag.Title = "Todo tu cine, conectado"; }
+<section id="acceso" class="access-hero">
+    <div class="hero-copy">
+        <p class="eyebrow">
+            <span>
+            </span> EL CINE NO SE DETIENE. TU OPERACIÓN TAMPOCO.
+        </p>
+        <h1>Todo tu cine.<br/><em>Conectado.</em>
+        </h1>
+        <p class="hero-description">Cada entrada, cada venta, cada experiencia.<br/>Una plataforma para que todo suceda.
+        </p>
+        <a class="explore-link" href="#soluciones">Descubre A1 Suite
+            <span aria-hidden="true">↓
+            </span>
+        </a>
+        <div class="hero-caption">
+            <span class="live-dot">
+            </span> TECNOLOGÍA QUE ACOMPAÑA CADA FUNCIÓN
+        </div>
+    </div>
+    <div class="access-card">
+        <p class="eyebrow">/ ACCESO AL SISTEMA
+        </p>
+        <h2>Bienvenido de nuevo.
+        </h2>
+        <p>Ingresa a tu espacio de administración.
+        </p>
+        @if (Request.QueryString["expired"] != null) {
+        <div class="notice">Tu sesión terminó. Inicia sesión nuevamente.
+        </div> }
+        @if (Request.QueryString["changed"] != null) {
+        <div class="notice">Contraseña actualizada. Accede con tu nueva contraseña.
+        </div> }
+        @if (Model.Unavailable) {
+        <div class="alert" role="alert">La conexión al servicio no está disponible. Intenta nuevamente más tarde.
+        </div> }
+        @using (Html.BeginForm("Login", "Public", FormMethod.Post, new { @class = "login-form" }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", new { @class = "validation", role = "alert" })
+        <label for="UserName">Usuario
+        </label>
+        @Html.TextBoxFor(m => m.UserName, new { autocomplete = "username", placeholder = "Tu usuario", maxlength = 80, required = "required" })
+        <label for="Password">Contraseña
+        </label>
+        <div class="password-field">
+            @Html.PasswordFor(m => m.Password, new { autocomplete = "current-password", placeholder = "Tu contraseña", maxlength = 128, required = "required" })
+            <button type="button" class="password-toggle" aria-label="Mostrar contraseña" aria-pressed="false">Ver
+            </button>
+        </div>
+        <button type="submit" class="button login-button">Iniciar sesión
+            <span aria-hidden="true">→
+            </span>
+        </button>
+        }
+        <p class="access-help">¿Necesitas acceso? Contacta a tu administrador.
+        </p>
+        <div class="card-footer">
+            <span class="mini-lock" aria-hidden="true">▣
+            </span> ACCESO PRIVADO · A1 INTEGRATIONS ADMIN
+        </div>
+    </div>
+</section>
+<div class="suite-strip">
+    <span>UNA PLATAFORMA. TODA LA EXPERIENCIA.
+    </span>
+    <div>
+        <a href="#lobby">Taquilla
+        </a>
+        <span>·
+        </span>
+        <a href="#alimentos">Dulcería
+        </a>
+        <span>·
+        </span>
+        <a href="#digital">Venta digital
+        </a>
+        <span>·
+        </span>
+        <a href="#operacion">Operación
+        </a>
+        <span>·
+        </span>
+        <a href="#experiencia">Fidelización
+        </a>
+    </div>
+</div>
+<section id="soluciones" class="suite-intro">
+    <p class="eyebrow">/ DESCUBRE A1 SUITE
+    </p>
+    <div>
+        <h2>Detrás de una gran función,<br/>hay una gran operación.
+        </h2>
+        <p>Desde la primera entrada hasta las próximas visitas.<br/>Descubre el software que conecta cada etapa de tu cine.
+        </p>
+    </div>
+</section>
+@foreach (var promotion in Model.Promotions)
+{
+<section id="@promotion.Anchor" class="promotion @(promotion.Position % 2 == 0 ? "reverse" : "")">
+    <figure>
+        <img src="@Url.Content("~" + promotion.Image)" alt="@(promotion.Anchor == "alimentos" ? "Terminal de punto de venta en una dulcería de cine" : promotion.Anchor == "digital" || promotion.Anchor == "experiencia" ? "Compra digital de entradas en un cine" : "Taquilla y kioscos de autoservicio en un cine")" loading="lazy" width="1200" height="800"/>
+        <figcaption>Imagen conceptual de ambientación
+        </figcaption>
+    </figure>
+    <div class="promotion-copy">
+        <p class="eyebrow">@promotion.Category
+        </p>
+        <h2>@promotion.Title
+        </h2>
+        <p>@promotion.Body
+        </p>
+        <a class="outline-button" href="@promotion.Link" target="_blank" rel="noopener noreferrer">Conoce la solución
+            <span aria-hidden="true">↗
+            </span>
+        </a>
+    </div>
+</section>
+}
+<section class="closing-cta">
+    <p class="eyebrow">/ LA PRÓXIMA FUNCIÓN EMPIEZA AQUÍ
+    </p>
+    <h2>Una mejor experiencia.<br/>De principio a fin.
+    </h2>
+    <a class="button light" href="https://admit-one.eu/get-in-touch/" target="_blank" rel="noopener noreferrer">Hablemos de tu cine
+        <span aria-hidden="true">↗
+        </span>
+    </a>
+</section>

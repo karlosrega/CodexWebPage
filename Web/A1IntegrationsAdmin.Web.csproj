@@ -1,0 +1,27 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Debug</Configuration><Platform Condition="'$(Platform)'==''">AnyCPU</Platform>
+    <ProjectGuid>{92F52E32-293D-4C78-A452-FF0896D227F6}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType><RootNamespace>A1IntegrationsAdmin.Web</RootNamespace><AssemblyName>A1IntegrationsAdmin.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion><OutputPath>bin\</OutputPath><UseIISExpress>true</UseIISExpress><IISExpressSSLPort>44348</IISExpressSSLPort>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects><GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize Condition="'$(Configuration)'=='Release'">true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)'==''">17.0</VisualStudioVersion><VSToolsPath Condition="'$(VSToolsPath)'==''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/><Reference Include="System.Core"/><Reference Include="System.Web"/><Reference Include="System.Web.Extensions"/><Reference Include="System.Configuration"/><Reference Include="System.ComponentModel.DataAnnotations"/><Reference Include="System.Data"/><Reference Include="Microsoft.CSharp"/>
+    <ProjectReference Include="..\Core\A1IntegrationsAdmin.Core.csproj"><Project>{769ABF37-F3D5-4772-8AB9-BD91A7FE922F}</Project><Name>A1IntegrationsAdmin.Core</Name></ProjectReference>
+    <ProjectReference Include="..\Data\A1IntegrationsAdmin.Data.csproj"><Project>{CA705EBD-01D5-4A32-A0ED-E1273AC69746}</Project><Name>A1IntegrationsAdmin.Data</Name></ProjectReference>
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0"/><PackageReference Include="Microsoft.AspNet.WebPages" Version="3.3.0"/>
+    <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="4.1.0"/>
+    <Compile Include="**\*.cs" Exclude="bin\**;obj\**" />
+    <Content Include="**\*.cshtml;**\*.config;**\*.asax;Content\**\*;Scripts\**\*" Exclude="bin\**;obj\**;ConnectionStrings.local.config"/>
+    <None Include="ConnectionStrings.example.config"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets"/>
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets')"/>
+  <ProjectExtensions><VisualStudio><FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}"><WebProjectProperties><UseIIS>True</UseIIS><AutoAssignPort>False</AutoAssignPort><DevelopmentServerPort>5080</DevelopmentServerPort><IISUrl>http://localhost:5080/</IISUrl><SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile></WebProjectProperties></FlavorProperties></VisualStudio></ProjectExtensions>
+</Project>

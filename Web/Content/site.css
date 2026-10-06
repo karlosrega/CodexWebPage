@@ -1,0 +1,1230 @@
+/* 01 / Brand typography — local assets, no external runtime dependencies. */
+@font-face {
+    font-family:Poppins;
+    src:url('fonts/poppins-regular.ttf') format('truetype');
+    font-weight:400;
+    font-display:swap
+}
+
+@font-face {
+    font-family:Poppins;
+    src:url('fonts/poppins-medium.ttf') format('truetype');
+    font-weight:500;
+    font-display:swap
+}
+
+@font-face {
+    font-family:Poppins;
+    src:url('fonts/poppins-bold.ttf') format('truetype');
+    font-weight:700;
+    font-display:swap
+}
+
+@font-face {
+    font-family:Muli;
+    src:url('fonts/muli-regular.woff2') format('woff2');
+    font-weight:400 500;
+    font-display:swap
+}
+
+:root {
+    --red:#a9252b;
+    --red-dark:#881c22;
+    --ink:#191919;
+    --paper:#f5f5f5;
+    --line:#e4e4e4;
+    --muted:#656565;
+    --white:#fff;
+    --header:88px
+}
+
+* {
+    box-sizing:border-box
+}
+
+html {
+    scroll-behavior:smooth;
+    scroll-padding-top:110px
+}
+
+body {
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Muli,Arial,Helvetica,sans-serif;
+    font-size:16px;
+    line-height:1.65
+}
+
+h1,h2,h3,.button,.outline-button,button {
+    font-family:Poppins,Arial,Helvetica,sans-serif
+}
+
+h1,h2,h3 {
+    margin:0;
+    line-height:1.15;
+    letter-spacing:-1.5px
+}
+
+p {
+    margin:0 0 22px
+}
+
+a {
+    color:inherit;
+    text-decoration:none
+}
+
+button,input,textarea {
+    font:inherit
+}
+
+button,a,input,textarea {
+    touch-action:manipulation
+}
+
+button,a {
+    -webkit-tap-highlight-color:transparent
+}
+
+button {
+    cursor:pointer
+}
+
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible {
+    outline:3px solid var(--red);
+    outline-offset:4px
+}
+
+img {
+    max-width:100%;
+    display:block
+}
+
+button {
+    border:0
+}
+
+input:not([type=checkbox]),textarea {
+    width:100%;
+    border:1px solid #d9d9d9;
+    border-radius:7px;
+    background:#fff;
+    padding:13px 15px;
+    font-size:15px;
+    color:var(--ink);
+    min-height:48px
+}
+
+input::placeholder {
+    color:#777
+}
+
+label {
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin:17px 0 7px
+}
+
+small {
+    font-size:12px;
+    color:var(--muted)
+}
+
+.eyebrow {
+    font-family:Poppins,Arial,sans-serif;
+    font-size:10px;
+    letter-spacing:2px;
+    font-weight:500;
+    margin-bottom:24px
+}
+
+.button,.outline-button {
+    display:inline-flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    padding:14px 23px;
+    font-size:13px;
+    font-weight:500;
+    border-radius:6px;
+    min-height:48px;
+    transition:background .2s,transform .2s
+}
+
+.button {
+    background:var(--red);
+    color:#fff
+}
+
+.button:hover {
+    background:var(--red-dark);
+    transform:translateY(-1px)
+}
+
+.outline-button {
+    border:1px solid #b8b8b8;
+    background:transparent
+}
+
+.outline-button:hover {
+    border-color:var(--red);
+    color:var(--red)
+}
+
+.skip-link {
+    position:fixed;
+    left:20px;
+    top:-80px;
+    z-index:100;
+    background:#fff;
+    padding:15px
+}
+
+.skip-link:focus {
+    top:10px
+}
+
+/* 02 / Shared top navigation and Bahía-inspired full-screen menu. */
+.site-header {
+    height:var(--header);
+    position:sticky;
+    top:0;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    padding:0 5%;
+    gap:22px;
+    background:#fff;
+    border-bottom:1px solid var(--line)
+}
+
+.brand {
+    flex-shrink:0
+}
+
+.brand img {
+    width:160px;
+    height:auto
+}
+
+.brand-divider {
+    height:25px;
+    width:1px;
+    background:#d6d6d6
+}
+
+.product-label {
+    font-family:Poppins,sans-serif;
+    font-size:9px;
+    letter-spacing:1.6px;
+    line-height:1.6;
+    color:var(--muted)
+}
+
+.product-label b {
+    display:block;
+    font-weight:500
+}
+
+.desktop-nav {
+    margin-left:auto;
+    display:flex;
+    gap:30px;
+    align-items:center;
+    font-size:12px;
+    font-family:Poppins,sans-serif
+}
+
+.desktop-nav a:hover,.text-button:hover {
+    color:var(--red)
+}
+
+.desktop-nav form {
+    margin:0
+}
+
+.text-button {
+    background:transparent;
+    font-size:12px;
+    padding:0
+}
+
+.menu-toggle {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:6px;
+    width:42px;
+    height:42px;
+    background:transparent;
+    margin-left:8px;
+    z-index:31
+}
+
+.menu-toggle span {
+    height:2px;
+    width:25px;
+    background:var(--ink);
+    transition:transform .2s
+}
+
+.menu-toggle[aria-expanded=true] span {
+    background:#fff
+}
+
+.menu-toggle[aria-expanded=true] span:first-child {
+    transform:translateY(4px) rotate(45deg)
+}
+
+.menu-toggle[aria-expanded=true] span:last-child {
+    transform:translateY(-4px) rotate(-45deg)
+}
+
+.menu-overlay {
+    position:fixed;
+    inset:0;
+    z-index:30;
+    background:var(--ink);
+    color:#fff;
+    padding:120px 10% 40px;
+    overflow:auto
+}
+
+.menu-overlay[hidden] {
+    display:none
+}
+
+.menu-overlay nav {
+    max-width:900px
+}
+
+.menu-overlay nav>a,.menu-overlay nav>form>button {
+    display:block;
+    font-family:Poppins,sans-serif;
+    font-size:clamp(30px,5vw,66px);
+    line-height:1.8;
+    width:100%;
+    text-align:left;
+    border-bottom:1px solid #444;
+    background:none;
+    color:white
+}
+
+.menu-overlay a:hover {
+    color:#ccc
+}
+
+.menu-overlay a span {
+    float:right;
+    font-size:18px
+}
+
+.menu-overlay p {
+    margin-top:50px;
+    color:#aaa
+}
+
+.menu-open {
+    overflow:hidden
+}
+
+.site-footer {
+    padding:35px 5%;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    gap:28px;
+    font-size:12px;
+    border-top:1px solid var(--line)
+}
+
+.site-footer p {
+    margin:0
+}
+
+.site-footer>span {
+    margin-left:auto;
+    color:var(--muted)
+}
+
+.site-footer img {
+    width:132px;
+    height:auto
+}
+
+/* 03 / Access hero. Login remains visible before scrolling to promotional content. */
+.access-hero {
+    min-height:650px;
+    height:calc(100vh - 148px);
+    max-height:860px;
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 390px;
+    align-items:center;
+    gap:7%;
+    padding:54px 7%;
+    background:linear-gradient(90deg,rgba(14,10,9,.84) 0%,rgba(18,11,9,.45) 58%,rgba(18,11,9,.34) 100%),url('images/cinema-lobby.jpg') center 55%/cover;
+    color:white
+}
+
+.hero-copy {
+    padding-bottom:8px;
+    max-width:660px
+}
+
+.hero-copy>.eyebrow {
+    font-size:9px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    letter-spacing:1.6px
+}
+
+.hero-copy>.eyebrow span {
+    display:block;
+    background:#b92b32;
+    width:28px;
+    height:2px
+}
+
+.hero-copy h1 {
+    font-size:clamp(46px,5.3vw,79px);
+    font-weight:700;
+    letter-spacing:-3px;
+    line-height:1.12
+}
+
+.hero-copy h1 em {
+    font-style:normal;
+    color:#fff
+}
+
+.hero-description {
+    font-size:16px;
+    color:#e1dedc;
+    line-height:1.8;
+    margin-top:27px
+}
+
+.explore-link {
+    display:inline-flex;
+    gap:35px;
+    font-size:13px;
+    border-bottom:1px solid #8a817a;
+    padding:9px 0
+}
+
+.explore-link span {
+    font-size:23px
+}
+
+.hero-caption {
+    margin-top:64px;
+    font-size:8px;
+    letter-spacing:1.7px;
+    color:#dfd9d4;
+    display:flex;
+    align-items:center;
+    gap:10px
+}
+
+.live-dot {
+    width:6px;
+    height:6px;
+    background:#ae292f;
+    border-radius:50%
+}
+
+.access-card {
+    color:var(--ink);
+    background:#fff;
+    border-radius:14px;
+    padding:34px 32px 0;
+    box-shadow:0 22px 65px #0003
+}
+
+.access-card>.eyebrow {
+    color:var(--red);
+    font-size:9px;
+    margin-bottom:13px
+}
+
+.access-card h2 {
+    font-size:25px;
+    letter-spacing:-.7px;
+    margin-bottom:12px
+}
+
+.access-card>p:not(.eyebrow) {
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:20px
+}
+
+.password-field {
+    position:relative
+}
+
+.password-field input {
+    padding-right:60px
+}
+
+.password-toggle {
+    position:absolute;
+    right:10px;
+    top:10px;
+    min-width:38px;
+    min-height:28px;
+    font-size:11px;
+    color:var(--muted);
+    background:#fff;
+    border-radius:4px
+}
+
+.login-button {
+    width:100%;
+    margin-top:24px
+}
+
+.access-card .access-help {
+    font-size:10px;
+    text-align:center;
+    margin:19px 0 24px
+}
+
+.card-footer {
+    border-top:1px solid #ececec;
+    margin:0 -32px;
+    padding:17px 20px;
+    text-align:center;
+    font-size:8px;
+    letter-spacing:1px;
+    color:#777;
+    background:#fafafa;
+    border-radius:0 0 14px 14px
+}
+
+.mini-lock {
+    color:var(--red);
+    margin-right:6px
+}
+
+.suite-strip {
+    padding:21px 5%;
+    display:flex;
+    gap:30px;
+    justify-content:space-between;
+    align-items:center;
+    background:#fff;
+    border-bottom:1px solid var(--line)
+}
+
+.suite-strip>span {
+    font-family:Poppins;
+    font-size:8px;
+    letter-spacing:1.8px;
+    color:var(--muted)
+}
+
+.suite-strip>div {
+    display:flex;
+    gap:20px;
+    font-size:11px
+}
+
+.suite-strip>div>span {
+    color:#aaa
+}
+
+.suite-strip a:hover {
+    color:var(--red)
+}
+
+/* 04 / Promotional catalogue. */
+.suite-intro {
+    padding:95px 7% 50px
+}
+
+.suite-intro>.eyebrow {
+    color:var(--red)
+}
+
+.suite-intro>div {
+    display:flex;
+    gap:40px;
+    justify-content:space-between;
+    align-items:end
+}
+
+.suite-intro h2 {
+    font-size:clamp(29px,3.2vw,45px)
+}
+
+.suite-intro div p {
+    font-size:13px;
+    color:var(--muted);
+    max-width:340px;
+    margin-bottom:0
+}
+
+.promotion {
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:7%;
+    align-items:center;
+    padding:45px 7% 65px
+}
+
+.promotion figure {
+    margin:0;
+    position:relative;
+    overflow:hidden;
+    border-radius:10px;
+    background:#ddd
+}
+
+.promotion figure img {
+    width:100%;
+    height:390px;
+    object-fit:cover;
+    transition:transform .6s
+}
+
+.promotion:hover figure img {
+    transform:scale(1.025)
+}
+
+.promotion figcaption {
+    position:absolute;
+    bottom:13px;
+    left:18px;
+    font-size:8px;
+    letter-spacing:1px;
+    color:#fff;
+    text-shadow:0 1px 4px black
+}
+
+.promotion-copy {
+    max-width:450px
+}
+
+.promotion-copy .eyebrow {
+    color:var(--red);
+    margin-bottom:18px
+}
+
+.promotion-copy h2 {
+    font-size:clamp(30px,3.1vw,43px);
+    margin-bottom:22px
+}
+
+.promotion-copy>p:not(.eyebrow) {
+    font-size:15px;
+    color:var(--muted)
+}
+
+.promotion.reverse {
+    grid-template-columns:1fr 1.1fr
+}
+
+.promotion.reverse figure {
+    grid-column:2;
+    grid-row:1
+}
+
+.promotion.reverse .promotion-copy {
+    grid-column:1;
+    grid-row:1
+}
+
+.closing-cta {
+    text-align:center;
+    background:var(--red);
+    color:white;
+    padding:80px 7%
+}
+
+.closing-cta h2 {
+    font-size:clamp(36px,4vw,56px);
+    margin-bottom:35px
+}
+
+.button.light {
+    background:white;
+    color:var(--red)
+}
+
+.button.light:hover {
+    background:#f1f1f1
+}
+
+/* 05 / Administration, forms, tables and feedback. */
+.admin-welcome {
+    background:var(--red);
+    color:white;
+    padding:65px 7%
+}
+
+.admin-welcome h1 {
+    font-size:clamp(35px,4vw,55px);
+    margin-bottom:18px
+}
+
+.admin-welcome p:not(.eyebrow) {
+    color:#f3d9db
+}
+
+.admin-welcome>span {
+    font-size:9px;
+    letter-spacing:2px
+}
+
+.admin-content {
+    padding:55px 7% 90px;
+    min-height:calc(100vh - 194px)
+}
+
+.admin-content.narrow {
+    max-width:970px;
+    margin:auto
+}
+
+.admin-content h1 {
+    font-size:42px;
+    margin-bottom:18px
+}
+
+.admin-content .eyebrow {
+    color:var(--red)
+}
+
+.dashboard-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px
+}
+
+.dashboard-card {
+    position:relative;
+    padding:35px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    transition:border-color .2s,transform .2s
+}
+
+.dashboard-card:hover {
+    border-color:var(--red);
+    transform:translateY(-3px)
+}
+
+.card-number {
+    font-size:12px;
+    color:var(--red)
+}
+
+.dashboard-card h2 {
+    font-size:27px;
+    margin:28px 0 15px
+}
+
+.dashboard-card p {
+    font-size:14px;
+    color:var(--muted)
+}
+
+.card-arrow {
+    font-size:24px;
+    color:var(--red)
+}
+
+.page-heading {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+    margin-bottom:28px
+}
+
+.page-heading p:not(.eyebrow) {
+    color:var(--muted)
+}
+
+.table-container {
+    overflow:auto;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:9px
+}
+
+table {
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px
+}
+
+th {
+    text-align:left;
+    font-weight:500;
+    font-family:Poppins;
+    font-size:11px;
+    color:var(--muted);
+    background:#fafafa
+}
+
+th,td {
+    padding:19px 20px;
+    border-bottom:1px solid var(--line);
+    vertical-align:middle
+}
+
+tbody tr:last-child td {
+    border-bottom:0
+}
+
+.badge {
+    padding:5px 11px;
+    border-radius:20px;
+    background:#eee;
+    color:#555;
+    font-size:10px
+}
+
+.badge.active {
+    background:#f6e7e8;
+    color:var(--red)
+}
+
+.row-link {
+    color:var(--red);
+    white-space:nowrap
+}
+
+.search-form {
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:24px
+}
+
+.search-form label {
+    margin:0;
+    white-space:nowrap
+}
+
+.search-form input {
+    max-width:390px
+}
+
+.pagination {
+    display:flex;
+    justify-content:space-between;
+    margin-top:22px;
+    color:var(--muted);
+    font-size:12px
+}
+
+.pagination a {
+    margin-left:20px;
+    color:var(--red)
+}
+
+.empty-state {
+    text-align:center;
+    padding:40px
+}
+
+.protected-label {
+    display:block;
+    margin-top:5px
+}
+
+.back-link {
+    display:inline-block;
+    margin-bottom:30px;
+    font-size:12px;
+    color:var(--muted)
+}
+
+.form-panel {
+    background:#fff;
+    border:1px solid var(--line);
+    padding:30px;
+    border-radius:10px;
+    margin-top:25px
+}
+
+.form-panel h2 {
+    font-size:25px;
+    margin-bottom:22px
+}
+
+.form-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 25px
+}
+
+.check-row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:400;
+    margin:16px 0
+}
+
+.check-row input {
+    width:18px;
+    height:18px;
+    accent-color:var(--red);
+    flex-shrink:0
+}
+
+.check-row small {
+    margin-left:auto
+}
+
+.form-panel fieldset {
+    margin:30px 0;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px
+}
+
+.form-panel legend {
+    font-family:Poppins;
+    font-size:14px;
+    padding:0 10px
+}
+
+.muted {
+    font-size:12px;
+    color:var(--muted)
+}
+
+.form-actions {
+    display:flex;
+    gap:15px;
+    margin-top:28px
+}
+
+.notice,.alert,.validation:not(.validation-summary-valid) {
+    padding:13px 16px;
+    font-size:12px;
+    background:#f8e9ea;
+    border:1px solid #edc8cb;
+    color:var(--red-dark);
+    border-radius:6px;
+    margin-bottom:20px
+}
+
+.validation ul {
+    padding-left:18px;
+    margin:0
+}
+
+.validation-summary-valid {
+    display:none
+}
+
+.notice {
+    background:#f4f4f4;
+    border-color:#ddd;
+    color:var(--ink)
+}
+
+/* 06 / Responsive layouts and reduced motion. */
+@media(min-width:1600px) {
+    .access-hero {
+        grid-template-columns:1fr 430px;
+        padding-left:10%;
+        padding-right:10%
+    }
+
+    .access-card {
+        padding:45px 40px 0
+    }
+
+    .card-footer {
+        margin:0 -40px
+    }
+
+}
+
+@media(max-width:1000px) {
+    .site-header {
+        gap:16px;
+        padding:0 4%
+    }
+
+    .desktop-nav {
+        gap:18px
+    }
+
+    .access-hero {
+        gap:5%;
+        padding:45px 5%;
+        grid-template-columns:1fr 350px
+    }
+
+    .access-card {
+        padding:28px 25px 0
+    }
+
+    .card-footer {
+        margin:0 -25px
+    }
+
+    .hero-copy h1 {
+        font-size:56px
+    }
+
+    .hero-copy>.eyebrow {
+        font-size:8px
+    }
+
+    .suite-strip {
+        flex-direction:column;
+        gap:12px
+    }
+
+    .promotion figure img {
+        height:320px
+    }
+
+    .dashboard-grid {
+        gap:15px
+    }
+
+    .dashboard-card {
+        padding:25px
+    }
+
+    .suite-intro>div {
+        display:block
+    }
+
+    .suite-intro div p {
+        margin-top:25px;
+        max-width:none
+    }
+
+}
+
+@media(max-width:760px) {
+    :root {
+        --header:74px
+    }
+
+    .site-header {
+        padding:0 6%;
+        gap:15px
+    }
+
+    .brand img {
+        width:126px
+    }
+
+    .product-label {
+        font-size:8px
+    }
+
+    .desktop-nav {
+        display:none
+    }
+
+    .menu-toggle {
+        margin-left:auto
+    }
+
+    .access-hero {
+        height:auto;
+        max-height:none;
+        min-height:0;
+        grid-template-columns:1fr;
+        padding:48px 6% 40px;
+        gap:35px;
+        background-position:65% center
+    }
+
+    .hero-copy h1 {
+        font-size:52px;
+        letter-spacing:-2px
+    }
+
+    .hero-copy>.eyebrow {
+        font-size:8px;
+        letter-spacing:1px
+    }
+
+    .hero-description {
+        font-size:14px;
+        margin-top:20px
+    }
+
+    .hero-caption {
+        display:none
+    }
+
+    .access-card {
+        max-width:460px;
+        width:100%;
+        justify-self:center;
+        padding:29px 26px 0
+    }
+
+    .card-footer {
+        margin:0 -26px
+    }
+
+    .suite-strip {
+        padding:22px 5%
+    }
+
+    .suite-strip>div {
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:7px 13px;
+        font-size:10px
+    }
+
+    .suite-intro {
+        padding:55px 6% 25px
+    }
+
+    .suite-intro h2 {
+        font-size:30px;
+        letter-spacing:-1px
+    }
+
+    .promotion,.promotion.reverse {
+        grid-template-columns:1fr;
+        gap:26px;
+        padding:25px 6% 40px
+    }
+
+    .promotion.reverse figure,.promotion.reverse .promotion-copy {
+        grid-column:auto;
+        grid-row:auto
+    }
+
+    .promotion figure img {
+        height:270px
+    }
+
+    .promotion-copy h2 {
+        font-size:31px;
+        letter-spacing:-1px
+    }
+
+    .promotion-copy p:not(.eyebrow) {
+        font-size:14px
+    }
+
+    .closing-cta {
+        padding:55px 6%
+    }
+
+    .site-footer {
+        flex-wrap:wrap;
+        gap:16px;
+        padding:28px 6%
+    }
+
+    .site-footer>span {
+        margin-left:0
+    }
+
+    .site-footer p {
+        width:calc(100% - 150px)
+    }
+
+    .admin-welcome {
+        padding:45px 6%
+    }
+
+    .admin-content {
+        padding:35px 6% 55px
+    }
+
+    .admin-content h1 {
+        font-size:33px
+    }
+
+    .dashboard-grid {
+        grid-template-columns:1fr
+    }
+
+    .page-heading {
+        align-items:start;
+        flex-direction:column;
+        gap:10px
+    }
+
+    .search-form {
+        flex-wrap:wrap
+    }
+
+    .search-form label {
+        width:100%
+    }
+
+    .search-form input {
+        max-width:none;
+        flex:1;
+        min-width:130px
+    }
+
+    .form-grid {
+        grid-template-columns:1fr
+    }
+
+    .form-panel {
+        padding:23px
+    }
+
+    .check-row {
+        flex-wrap:wrap
+    }
+
+    .check-row small {
+        width:100%;
+        margin-left:28px
+    }
+
+    .form-actions {
+        flex-wrap:wrap
+    }
+
+    .pagination {
+        gap:20px
+    }
+
+    .pagination div {
+        display:flex;
+        flex-direction:column;
+        gap:12px
+    }
+
+    .menu-overlay {
+        padding-top:110px
+    }
+
+    .menu-overlay nav>a,.menu-overlay nav>form>button {
+        font-size:34px
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+    html {
+        scroll-behavior:auto
+    }
+
+    *,*:before,*:after {
+        transition:none!important
+    }
+
+}

@@ -1,0 +1,11 @@
+**/bin/
+**/obj/
+.vs/
+packages/
+*.user
+*.suo
+Web/ConnectionStrings.local.config
+local.settings.ps1
+artifacts/
+*.log
+.local/

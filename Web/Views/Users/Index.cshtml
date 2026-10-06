@@ -1,0 +1,82 @@
+@model PageResult<UserRecord>
+@{ ViewBag.Title = "Usuarios"; }
+<section class="admin-content">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">/ ADMINISTRACIÓN
+            </p>
+            <h1>Usuarios
+            </h1>
+            <p>Las personas detrás de cada operación.
+            </p>
+        </div>@if (Services.Current.Can("users.write")) {
+        <a class="button" href="@Url.Action("Edit")">Nuevo usuario +
+        </a> }
+    </div>
+    @if (TempData["Notice"] != null) {
+    <div class="notice" role="status">@TempData["Notice"]
+    </div> }
+    <form method="get" class="search-form">
+        <label for="search">Buscar usuario
+        </label>
+        <input type="search" id="search" name="search" value="@ViewBag.Search" placeholder="Usuario, nombre o correo" maxlength="120"/>
+        <button class="outline-button" type="submit">Buscar
+        </button>
+    </form>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario
+                    </th>
+                    <th>Nombre
+                    </th>
+                    <th>Correo
+                    </th>
+                    <th>Perfiles
+                    </th>
+                    <th>Estado
+                    </th>
+                    <th>Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Items) {
+                <tr>
+                    <td><strong>@user.UserName</strong>
+                    </td>
+                    <td>@user.DisplayName
+                    </td>
+                    <td>@user.Email
+                    </td>
+                    <td>@user.Profiles
+                    </td>
+                    <td>
+                        <span class="badge @(user.Active ? "active" : "")">@(user.Active ? "Activo" : "Inactivo")
+                        </span>
+                    </td>
+                    <td>@if (Services.Current.Can("users.write")) {
+                        <a class="row-link" href="@Url.Action("Edit",new { id = user.Id })">Editar →
+                        </a> }
+                    </td>
+                </tr> }
+                @if (Model.Items.Count == 0) {
+                <tr>
+                    <td colspan="6" class="empty-state">No se encontraron usuarios.
+                    </td>
+                </tr> }
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        <span>@Model.Total usuarios · Página @Model.Page de @Model.Pages
+        </span>
+        <div>@if (Model.Page > 1) {
+            <a href="@Url.Action("Index",new { search = ViewBag.Search, page = Model.Page - 1 })">← Anterior
+            </a> }@if (Model.Page < Model.Pages) {
+            <a href="@Url.Action("Index",new { search = ViewBag.Search, page = Model.Page + 1 })">Siguiente →
+            </a> }
+        </div>
+    </div>
+</section>
